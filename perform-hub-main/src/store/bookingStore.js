@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import axios from "axios"
 
-
+const API_URL = import.meta.env.VITE_API_URL
 
 const useBookingStore = create((set, get) => ({
   bookings: [],
@@ -19,7 +19,7 @@ const useBookingStore = create((set, get) => ({
       }
 
       console.log("Creating booking with token:", token ? "Token exists" : "No token")
-      const response = await axios.post(`http://localhost:8000/api/bookings`, bookingData, config)
+      const response = await axios.post(`${API_URL}/api/bookings`, bookingData, config)
 
       // Add the new booking to the store
       set((state) => ({
@@ -45,7 +45,7 @@ const useBookingStore = create((set, get) => ({
       }
 
       console.log("Fetching client bookings with token:", token ? "Token exists" : "No token")
-      const response = await axios.get(`http://localhost:8000/api/bookings/client`, {
+      const response = await axios.get(`${API_URL}/api/bookings/client`, {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -70,7 +70,7 @@ const useBookingStore = create((set, get) => ({
         throw new Error("Authentication required")
       }
 
-      const response = await axios.get(`http://localhost:8000/api/bookings/performer`, {
+      const response = await axios.get(`${API_URL}/api/bookings/performer`, {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -96,7 +96,7 @@ const useBookingStore = create((set, get) => ({
       }
 
       const response = await axios.put(
-        `http://localhost:8000/api/bookings/${bookingId}/status`,
+        `${API_URL}/api/bookings/${bookingId}/status`,
         { status },
         {
           withCredentials: true,
@@ -106,7 +106,9 @@ const useBookingStore = create((set, get) => ({
 
       // Update the booking in the store
       set((state) => ({
-        bookings: state.bookings.map((booking) => (booking._id === bookingId ? { ...booking, status } : booking)),
+        bookings: state.bookings.map((booking) =>
+          booking._id === bookingId ? { ...booking, status } : booking,
+        ),
         isLoading: false,
       }))
 
@@ -128,7 +130,7 @@ const useBookingStore = create((set, get) => ({
       }
 
       const response = await axios.put(
-        `http://localhost:8000/api/bookings/${bookingId}/cancel`,
+        `${API_URL}/api/bookings/${bookingId}/cancel`,
         {},
         {
           withCredentials: true,
@@ -157,7 +159,7 @@ const useBookingStore = create((set, get) => ({
     set({ isLoading: true, error: null })
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/bookings/availability?performerId=${performerId}&date=${date}&startTime=${timeSlot.start}&endTime=${timeSlot.end}`,
+        `${API_URL}/api/bookings/availability?performerId=${performerId}&date=${date}&startTime=${timeSlot.start}&endTime=${timeSlot.end}`,
       )
 
       set({ isLoading: false })

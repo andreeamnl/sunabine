@@ -1,6 +1,8 @@
 import { create } from "zustand"
 import axios from "axios"
 
+const API_URL = import.meta.env.VITE_API_URL
+
 export const useAuthStore = create((set) => ({
   user: null,
   isAuthenticated: false,
@@ -11,7 +13,7 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null })
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/login",
+        `${API_URL}/api/auth/login`,
         { email, password },
         {
           withCredentials: true,
@@ -36,7 +38,7 @@ export const useAuthStore = create((set) => ({
   register: async (userData) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await axios.post("http://localhost:8000/api/auth/register", userData)
+      const response = await axios.post(`${API_URL}/api/auth/register`, userData)
       set({ isLoading: false })
       return true
     } catch (error) {
@@ -49,7 +51,7 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true })
     try {
       await axios.post(
-        "http://localhost:8000/api/auth/logout",
+        `${API_URL}/api/auth/logout`,
         {},
         {
           withCredentials: true,
@@ -80,7 +82,7 @@ export const useAuthStore = create((set) => ({
       // Set default authorization header for all future requests
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
 
-      const response = await axios.get("http://localhost:8000/api/auth/me", {
+      const response = await axios.get(`${API_URL}/api/auth/me`, {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       })

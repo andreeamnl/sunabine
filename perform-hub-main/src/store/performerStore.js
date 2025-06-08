@@ -1,6 +1,8 @@
 import { create } from "zustand"
 import axios from "axios"
 
+const API_URL = import.meta.env.VITE_API_URL
+
 export const usePerformerStore = create((set, get) => ({
   performers: [],
   currentPerformer: null,
@@ -10,7 +12,7 @@ export const usePerformerStore = create((set, get) => ({
   fetchPerformers: async () => {
     set({ isLoading: true, error: null })
     try {
-      const response = await axios.get(`http://localhost:8000/api/performers`)
+      const response = await axios.get(`${API_URL}/api/performers`)
       // Filter to only include users with role "performer"
       const performersOnly = response.data.filter((user) => user.role === "performer")
       set({ performers: performersOnly, isLoading: false })
@@ -26,7 +28,7 @@ export const usePerformerStore = create((set, get) => ({
   fetchPerformerById: async (id) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await axios.get(`http://localhost:8000/api/performers/${id}`)
+      const response = await axios.get(`${API_URL}/api/performers/${id}`)
       console.log("Fetched performer data:", response.data)
       set({ currentPerformer: response.data, isLoading: false })
     } catch (error) {
@@ -43,7 +45,7 @@ export const usePerformerStore = create((set, get) => ({
     try {
       console.log("Updating availability with data:", dates)
       const response = await axios.post(
-        "http://localhost:8000/api/performers/availability",
+        `${API_URL}/api/performers/availability`,
         { dates },
         { withCredentials: true },
       )
@@ -75,7 +77,7 @@ export const usePerformerStore = create((set, get) => ({
     set({ isLoading: true, error: null })
     try {
       // Use a direct JSON payload instead of FormData since we're using Cloudinary
-      const response = await axios.put("http://localhost:8000/api/performers/profile", profileData, {
+      const response = await axios.put(`${API_URL}/api/performers/profile`, profileData, {
         withCredentials: true,
       })
 

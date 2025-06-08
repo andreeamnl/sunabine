@@ -5,7 +5,7 @@ import "./index.css"
 import axios from "axios"
 
 // Set default base URL for axios
-axios.defaults.baseURL = "http://localhost:5000"
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 // Add a request interceptor to include the token in every request
 axios.interceptors.request.use(
