@@ -45,6 +45,11 @@ app.use("/api/auth", authRoutes)
 app.use("/api/performers", performerRoutes)
 app.use("/api/bookings", bookingRoutes)
 
+// Root route for health check
+app.get("/", (req, res) => {
+  res.send("API is running");
+})
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack)
