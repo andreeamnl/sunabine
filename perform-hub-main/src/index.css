@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: 354 85% 50%;
+  --primary-dark: 354 85% 40%;
+  --primary-light: 354 85% 60%;
+  --secondary: 340 70% 50%;
+  --secondary-dark: 340 70% 40%;
+  --accent: 15 80% 50%;
+  --accent-dark: 15 80% 40%;
+  --background: 0 20% 98%;
+  --foreground: 0 10% 5%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 10% 5%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 10% 5%;
+  --muted: 0 10% 96%;
+  --muted-foreground: 0 10% 40%;
+  --muted-hover: 0 10% 90%;
+  --border: 0 10% 90%;
+  --input: 0 10% 90%;
+  --ring: 354 85% 50%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --primary: 354 85% 50%;
+  --primary-dark: 354 85% 40%;
+  --primary-light: 354 85% 60%;
+  --secondary: 340 70% 50%;
+  --secondary-dark: 340 70% 40%;
+  --accent: 15 80% 50%;
+  --accent-dark: 15 80% 40%;
+  --background: 0 10% 5%;
+  --foreground: 0 20% 98%;
+  --card: 0 10% 8%;
+  --card-foreground: 0 20% 98%;
+  --popover: 0 10% 8%;
+  --popover-foreground: 0 20% 98%;
+  --muted: 0 10% 15%;
+  --muted-foreground: 0 10% 70%;
+  --muted-hover: 0 10% 20%;
+  --border: 0 10% 20%;
+  --input: 0 10% 20%;
+  --ring: 354 85% 50%;
+}
+
+body {
+  @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+@layer base {
+  * {
+    @apply border-[hsl(var(--border))];
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-[calc(var(--radius)-0.25rem)] font-medium text-white bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary-dark))] transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-[calc(var(--radius)-0.25rem)] font-medium text-[hsl(var(--foreground))] bg-[hsl(var(--muted))] hover:bg-[hsl(var(--muted-hover))] transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-[calc(var(--radius)-0.25rem)] font-medium text-[hsl(var(--foreground))] bg-transparent border border-[hsl(var(--border))] hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-colors focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .card {
+    @apply bg-[hsl(var(--card))] text-[hsl(var(--card-foreground))] rounded-[var(--radius)] border shadow-sm hover:shadow-md transition-shadow duration-300;
+  }
+
+  .input {
+    @apply flex h-10 w-full rounded-md border border-[hsl(var(--input))] bg-transparent px-3 py-2 text-sm placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--primary))] focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-[hsl(var(--primary))] text-white;
+  }
+
+  .badge-secondary {
+    @apply bg-[hsl(var(--secondary))] text-white;
+  }
+
+  .badge-outline {
+    @apply border border-[hsl(var(--border))] text-[hsl(var(--foreground))] hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-colors;
+  }
+}
+
+/* Calendar styles */
+.calendar .aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-primary {
+  @apply bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))];
+}
+
+.bg-gradient-secondary {
+  @apply bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--accent))];
+}
+
+/* Hover effects */
+.hover-lift {
+  @apply transition-transform duration-300 hover:translate-y-[-4px];
+}
+
+.hover-glow {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_rgba(var(--primary),0.5)];
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-white/80 backdrop-blur-md border border-white/20;
+}
+
+.dark .glass {
+  @apply bg-black/50 backdrop-blur-md border border-white/10;
+}
+
+/* Interactive elements */
+a,
+button {
+  @apply transition-colors duration-200;
+}
+
+a:not(.btn-primary):not(.btn-secondary):not(.btn-outline) {
+  @apply text-[hsl(var(--primary))] hover:text-[hsl(var(--primary-dark))] underline-offset-4 hover:underline;
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
