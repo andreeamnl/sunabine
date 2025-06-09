@@ -723,11 +723,10 @@ const Dashboard = () => {
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
                   <div>
                     <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] bg-clip-text text-transparent">
-                      Edit Your Profile
+                    Editează-ți profilul
                     </h2>
                     <p className="text-[hsl(var(--muted-foreground))]">
-                      Update your {isPerformer ? "performer" : "user"} information that will be displayed to{" "}
-                      {isPerformer ? "potential clients" : "others"}.
+                    Actualizează-ți informațiile de {isPerformer ? "interpret" : "utilizator"}, care vor fi afișate {isPerformer ? "potențialilor clienți" : "celorlalți"}.
                     </p>
                   </div>
                   <div className="mt-4 md:mt-0">
@@ -775,7 +774,7 @@ const Dashboard = () => {
 
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                   <div className="card p-6 hover-lift">
-                    <h3 className="text-lg font-medium mb-4">Basic Information</h3>
+                    <h3 className="text-lg font-medium mb-4">Informații de bază</h3>
 
                     <div className="space-y-4">
                       {isPerformer && (
@@ -922,7 +921,7 @@ const Dashboard = () => {
                     <div className="space-y-6">
                       <div>
                         <label htmlFor="profileImage" className="block text-sm font-medium mb-3">
-                          Profile Image
+                          Poză de profil
                         </label>
                         <div className="flex items-center space-x-4">
                           <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))] bg-[hsl(var(--muted))]">
@@ -948,14 +947,14 @@ const Dashboard = () => {
                           <CloudinaryUpload resourceType="image" onUploadSuccess={handleProfileImageUploadSuccess} />
                         </div>
                         <p className="mt-2 text-xs text-[hsl(var(--muted-foreground))]">
-                          Recommended: Square image, at least 300x300 pixels
+                          Sugestie: imagine pătrată, minim 300x300 pixeli.
                         </p>
                       </div>
 
                       {isPerformer && (
                         <div>
                           <label htmlFor="bannerImage" className="block text-sm font-medium mb-3">
-                            Banner Image
+                          Poză Banner
                           </label>
                           <div className="flex flex-col space-y-4">
                             <div className="relative w-full h-32 rounded-md overflow-hidden border border-[hsl(var(--border))] bg-[hsl(var(--muted))]">
@@ -981,7 +980,7 @@ const Dashboard = () => {
                             <CloudinaryUpload resourceType="image" onUploadSuccess={handleBannerImageUploadSuccess} />
                           </div>
                           <p className="mt-2 text-xs text-[hsl(var(--muted-foreground))]">
-                            Recommended: Wide image, at least 1200x400 pixels
+                            Sugestie: Imagine lată, de cel puțin 1200x400 pixeli.
                           </p>
                         </div>
                       )}
@@ -1076,7 +1075,7 @@ const Dashboard = () => {
                           d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
-                      <span>Supported formats: JPG, PNG, GIF, MP4. Maximum file size: 10MB</span>
+                      <span>Formate acceptate: JPG, PNG, GIF, MP4. Dimensiune maximă fișier: 10MB.</span>
                     </div>
                   </div>
                 </div>

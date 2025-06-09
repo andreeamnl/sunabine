@@ -86,7 +86,7 @@ const CloudinaryUpload = ({ onUploadSuccess, resourceType = "auto", multiple = f
 
   return (
     <button type="button" onClick={openWidget} disabled={!isScriptLoaded} className={`btn-secondary ${className}`}>
-      {multiple ? "Upload Media Files" : "Upload File"}
+      {multiple ? "Încarcă fișiere media" : "Încarcă fișier"}
     </button>
   )
 }

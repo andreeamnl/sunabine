@@ -161,12 +161,12 @@ const BookingsList = () => {
     <div className="w-full">
       <div className="mb-6">
         <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] bg-clip-text text-transparent">
-          {user?.role === "performer" ? "Manage Your Bookings" : "Your Bookings"}
+          {user?.role === "performer" ? "Rezervările tale" : "Rezervările tale"}
         </h2>
         <p className="text-[hsl(var(--muted-foreground))]">
           {user?.role === "performer"
-            ? "Review and manage booking requests from clients"
-            : "View and manage your performer bookings"}
+            ? "Administrează rezervările primite"
+            : "Vezi programările tale cu artiști"}
         </p>
       </div>
 
@@ -186,7 +186,7 @@ const BookingsList = () => {
                 : "bg-[hsl(var(--muted))] hover:bg-[hsl(var(--muted-foreground))] hover:bg-opacity-10"
             }`}
           >
-            Upcoming
+            În curs
           </button>
           <button
             onClick={() => setActiveTab("past")}
@@ -196,7 +196,7 @@ const BookingsList = () => {
                 : "bg-[hsl(var(--muted))] hover:bg-[hsl(var(--muted-foreground))] hover:bg-opacity-10"
             }`}
           >
-            Past
+            Trecute
           </button>
         </div>
 
@@ -206,11 +206,12 @@ const BookingsList = () => {
             onChange={(e) => setStatusFilter(e.target.value)}
             className="w-full sm:w-auto px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))]"
           >
-            <option value="all">All Statuses</option>
-            <option value="pending">Pending</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="rejected">Rejected</option>
-            <option value="canceled">Canceled</option>
+            <option value="all">Toate statusurile</option>
+            <option value="pending">În așteptare</option>
+            <option value="confirmed">Confirmate</option>
+            <option value="rejected">Respinse</option>
+            <option value="canceled">Anulate</option>
+
           </select>
         </div>
       </div>
@@ -230,15 +231,15 @@ const BookingsList = () => {
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          <h3 className="mt-2 text-lg font-medium">No bookings found</h3>
+          <h3 className="mt-2 text-lg font-medium">Nu există rezervări</h3>
           <p className="mt-1 text-[hsl(var(--muted-foreground))]">
-            {activeTab === "upcoming" ? "You don't have any upcoming bookings." : "You don't have any past bookings."}
+            {activeTab === "upcoming" ? "Nu ai nicio rezervare viitoare." : "Nu ai nicio rezervare trecută."}
           </p>
           <button
             onClick={loadBookings}
             className="mt-4 px-4 py-2 bg-[hsl(var(--primary))] text-white rounded-md hover:bg-opacity-90"
           >
-            Refresh Bookings
+            Reîncarcă rezervările
           </button>
         </div>
       ) : (
